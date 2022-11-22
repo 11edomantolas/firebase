@@ -1,5 +1,5 @@
 import 'package:firebase/HomeScreen.dart';
-import 'package:firebase/register.dart';
+import 'package:firebase/LoginScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,12 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class LoginScreen extends StatefulWidget {
+class registerScreen extends StatefulWidget {
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<registerScreen> createState() => _registerScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _registerScreenState extends State<registerScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _Passwordcontroller = TextEditingController();
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
           .then(
             (value) => Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => MyLocation(),
+                builder: (context) => LoginScreen(),
               ),
             ),
           );
@@ -89,33 +89,30 @@ class _LoginScreenState extends State<LoginScreen> {
                     border: OutlineInputBorder(), labelText: "Password"),
               ),
             ),
-            TextButton(onPressed: () {}, child: Text("Forgot Password")),
+            // TextButton(onPressed: () {}, child: Text("Forgot Password")),
             Container(
               height: 50,
               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: ElevatedButton(
                 style: raisedButtonStyle,
-                child: Text("Registed"),
+                child: Text("Register"),
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => registerScreen()));
+                  registerSubmit();
                 },
               ),
             ),
-            SizedBox(height: 10),
-            Container(
-              height: 50,
-              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: ElevatedButton(
-                style: raisedButtonStyle,
-                child: Text("Login"),
-                onPressed: () {
-                  loginSubmit();
-                },
-              ),
-            ),
+            // SizedBox(height: 10),
+            // Container(
+            //   height: 50,
+            //   padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+            //   child: ElevatedButton(
+            //     style: raisedButtonStyle,
+            //     child: Text("Login"),
+            //     onPressed: () {
+            //       loginSubmit();
+            //     },
+            //   ),
+            // ),
           ],
         ),
       ),
@@ -124,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
 }
 
 final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
-  onPrimary: Colors.grey[300],
+  onPrimary: Colors.white,
   primary: Colors.blue[300],
   minimumSize: Size(88, 36),
   padding: EdgeInsets.symmetric(horizontal: 16),
